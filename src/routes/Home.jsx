@@ -15,7 +15,7 @@ const Home = () => {
       <p>Explora nuestra página para descubrir más sobre nuestros servicios, horarios de clases, tarifas y promociones. ¡Esperamos poder ayudarte a alcanzar tus metas de conducir de manera segura y confiada! </p>
       </div >
       <div className='imghome'>
-      <img src="../prueba jeje.jpeg" alt="" />{/* ../../public/images/manEnseñando.jpeg */}
+      <img src="../../public/images/manEnseñando.jpeg" alt="" />
       <img  src="../../public/images/parqueadero.jpeg" alt="" />
       </div>
       <div className="informacion">
