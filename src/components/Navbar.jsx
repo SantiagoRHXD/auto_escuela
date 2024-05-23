@@ -23,6 +23,9 @@ const Navbar = () => {
             <li className='lista'>
             <Link to="/">Iniciar sesion</Link>
             </li>
+            <li className='lista'>
+            <Link to="/registro">Registrarse</Link>
+            </li>
         </ul> 
       </nav> 
       
