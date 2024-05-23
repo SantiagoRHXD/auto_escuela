@@ -1,13 +1,22 @@
+// Importa la librería principal de React y el hook useState
 import React, { useState } from 'react';
+
+// Importa el hook useParams de react-router-dom para acceder a los parámetros de la URL
 import { useParams } from 'react-router-dom';
+
+// Importa los componentes Navbar y Footer
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 
-
+// Define el componente funcional Compra
 const Compra = () => {
+  // Utiliza el hook useParams para obtener el parámetro courseId de la URL
   const { courseId } = useParams();
+
+  // Define el estado para controlar si se añaden exámenes médicos
   const [addMedicalExams, setAddMedicalExams] = useState(false);
 
+  // Lista de cursos con sus detalles
   const courses = [
     {
       id: 1,
@@ -60,13 +69,21 @@ const Compra = () => {
     }
   ];
 
+  // Encuentra el curso correspondiente al courseId en la lista de cursos
   const course = courses.find(course => course.id === parseInt(courseId));
+
+  // Precio de los exámenes médicos
   const examPrice = 215000;
+
+  // Calcula el precio total sumando el precio del curso y los exámenes médicos si están seleccionados
   const totalPrice = course ? (addMedicalExams ? course.price + examPrice : course.price) : 0;
 
   return (
     <div className="compra-container">
+      {/* Renderiza el componente Navbar */}
       <Navbar />
+
+      {/* Si el curso existe, muestra los detalles del curso */}
       {course ? (
         <>
           <h2>Finaliza tu compra</h2>
@@ -105,11 +122,16 @@ const Compra = () => {
               <hr />
               <br />
               
+              {/* Muestra la imagen del curso */}
               <img src={course.imageUrl} alt={course.title} className="summary-image" />
-              <h4 >{course.title}</h4>
+              
+              {/* Muestra el título, descripción y precio del curso */}
+              <h4>{course.title}</h4>
               <p>{course.description}</p>
-              <p className='precio'> ${course.price.toLocaleString()}</p>
+              <p className='precio'>${course.price.toLocaleString()}</p>
               <hr />
+
+              {/* Opción para añadir exámenes médicos */}
               <label>
                 <input
                   type="checkbox"
@@ -118,20 +140,28 @@ const Compra = () => {
                 />
                 Agrega exámenes médicos - ${examPrice.toLocaleString()}
               </label>
+
+              {/* Muestra el precio total */}
               <h4 className='precio'>Total: ${totalPrice.toLocaleString()}</h4>
+              
+              {/* Botones para comprar y regresar */}
               <div className='buttons-summary'>
-              <button className="compra-button">Comprar ahora</button>
-              <button className="compra-button" onClick={() => window.history.back()}>Regresar</button>
+                <button className="compra-button">Comprar ahora</button>
+                <button className="compra-button" onClick={() => window.history.back()}>Regresar</button>
               </div>
             </div>
           </div>
         </>
       ) : (
+        // Muestra un mensaje si el curso no se encuentra
         <p>Curso no encontrado</p>
       )}
+      
+      {/* Renderiza el componente Footer */}
       <Footer />
     </div>
   );
 };
 
+// Exporta el componente Compra para que pueda ser usado en otras partes de la aplicación
 export default Compra;
